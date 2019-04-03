@@ -1,6 +1,5 @@
 (ns armstrong-numbers)
 
-
 (defn- digits-to-sequence
        [n]
        (if (> n 9)
@@ -8,14 +7,11 @@
                (rem n 10))
          [n]))
 
-
 (defn- ** [x n] (reduce * (repeat n x)))
-
 
 (defn- sum-of-exponents
   [seq]
   (reduce #(+ %1 (** %2 (count seq))) 0 seq))
-
 
 (defn armstrong?
   [n]
