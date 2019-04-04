@@ -18,12 +18,26 @@
     (= n 1) "Take it down and pass it around,"
     :else "Take one down and pass it around,"))
 
+(defn second-line
+  [n]
+  (if (= n 0)
+    (str (pass-or-buy n) " 99 bottles of beer on the wall.")
+    (str (pass-or-buy n) " " (n-bottles (dec n)) " of beer on the wall.")))
+
 (defn verse
   [n]
-  )
+  (str (first-line n) "\n" (second-line n) "\n"))
+
+(defn bottle-range
+  [start finish]
+  (range start (dec finish) -1))
+
+(defn- assemble
+  [verses]
+  (string/join "\n" verses))
 
 (defn sing
   "Given a start and an optional end, returns all verses in this interval. If
   end is not given, the whole song from start is sung."
-  ([start])
-  ([start end]))
+  ([start] (sing start 0))
+  ([start end] (assemble (map verse (bottle-range start end)))))
